@@ -1,0 +1,1 @@
+default['closure']['compiler']['dir'] = '/usr/share/closure'

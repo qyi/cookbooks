@@ -1,0 +1,6 @@
+
+export PATH=$PATH:$HOME/.rvm/bin
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+export rvm_ruby_string="<%= node['gitorious']['rvm_ruby'] %>@<%= node['gitorious']['rvm_gemset'] %>"

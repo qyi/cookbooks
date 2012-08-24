@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+DATE=`date +"%Y-%m-%d %H:%M:%S"`
+LIST="<%= node[:gitorious][:db][:database] %>"
+HOST="<%= node[:mysql][:bind_address] %>"
+USER="<%= node[:gitorious][:db][:user] %>"
+PASSWORD="<%= node[:gitorious][:db][:password] %>"
+RESULT="/var/backups/gitorious-mysqldump.tmp.sql"
+LOG="/var/log/bacula/log"
+
+mysqldump --verbose --force --add-locks --complete-insert --host=${HOST} ${LIST} --result-file="${RESULT}" --user=${USER} --password=${PASSWORD} 2>> ${LOG}
+exit 0

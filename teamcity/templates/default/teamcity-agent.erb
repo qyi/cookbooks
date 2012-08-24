@@ -1,0 +1,22 @@
+#! /bin/sh
+# /etc/init.d/<%= @name %>
+#
+
+HOME=<%= node['teamcity']['agent']['dir'] %> 
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting agent"
+    <%= @path %>/bin/agent.sh start
+    ;;
+  stop)
+    echo "Stopping agent"
+    <%= @path %>/bin/agent.sh stop
+    ;;
+  *)
+    echo "Usage: /etc/init.d/<%= @name %> {start|stop}"
+    exit 1
+    ;;
+esac
+ 
+exit 0

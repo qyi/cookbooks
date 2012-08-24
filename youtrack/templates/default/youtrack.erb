@@ -1,0 +1,22 @@
+server {
+    listen   80; 
+    server_name  <%= node['youtrack']['virtual_host_name'] %> <%= node['youtrack']['virtual_host_alias'] %>;
+        
+    access_log /var/log/nginx/youtrack/access.log;
+    error_log   /var/log/nginx/youtrack/error.log;
+
+    location / { 
+	proxy_pass http://localhost:<%= node['youtrack']['port'] %>;
+        proxy_set_header    Host            $host;
+        proxy_set_header    X-Real-IP       $remote_addr;
+        proxy_set_header    X-Forwarded-for $remote_addr;
+        port_in_redirect off;
+        proxy_redirect   http://<%= node['youtrack']['virtual_host_name'] %>:<%= node['youtrack']['port'] %>/    /;  
+        proxy_connect_timeout 300;
+    }   
+                                                                                
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /var/www; #add nginx error pages folder
+    }   
+}

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node[:jira][:install_path] %>
+exec 2>&1
+exec chpst -u <%= node[:jira][:run_user] %>:<%= node[:jira][:run_user] %> env JIRA_HOME=<%= node[:jira][:home_path] %> JAVA_HOME=<%= node['java']['java_home'] %> JAVA_OPTS="-Xms<%= node['jira']['memory']['min'] %> -Xmx<%= node['jira']['memory']['min'] %> -Datlassian.plugins.enable.wait=<%= node['jira']['plugins_load_timeout'] %>" <%= node[:jira][:install_path] %>/bin/startup.sh 

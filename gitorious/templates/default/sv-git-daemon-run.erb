@@ -1,0 +1,3 @@
+#!/bin/sh
+exec 2>&1
+exec /usr/bin/git daemon --export-all --user=daemon --group=<%= node[:gitorious][:app_user] %> --base-path=<%= node[:gitorious][:app_base_dir] %> <%= node[:gitorious][:app_base_dir] %>

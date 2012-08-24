@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd <%= node['teamcity']['install_path'] %>
+exec 2>&1
+
+exec java -Xmx512m -Djava.awt.headless=true -jar <%= node['youtrack']['install_path'] %>/youtrack.jar <%= node['youtrack']['port'] %>

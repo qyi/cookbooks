@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+DATE=`date +"%Y-%m-%d %H:%M:%S"`
+LIST="<%= node[:jira][:database][:name] %>"
+HOST="<%= node[:mysql][:bind_address] %>"
+USER="<%= node[:jira][:database][:user] %>"
+PASSWORD="<%= node[:jira][:database][:password] %>"
+RESULT="/var/backups/jira-mysqldump.tmp.sql"
+LOG="/var/log/bacula/log"
+
+mysqldump --verbose --force --add-locks --complete-insert --host=${HOST} ${LIST} --result-file="${RESULT}" --user=${USER} --password=${PASSWORD} 2>> ${LOG}
+exit 0

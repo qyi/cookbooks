@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node[:selenium][:install_path] %>
+exec 2>&1
+exec java -jar selenium-server-standalone.jar -role hub --port <%= node[:selenium][:hub][:port] %>

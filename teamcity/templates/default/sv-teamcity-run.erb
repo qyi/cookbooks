@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd <%= node['teamcity']['install_path'] %>
+exec 2>&1
+
+exec chpst -u <%= node['teamcity']['run_user'] %>:<%= node['teamcity']['run_user'] %> env JAVA_HOME=<%= node['java']['java_home'] %> TEAMCITY_DATA_PATH=<%= node['teamcity']['home_path'] %> JAVA_OPTS="-Xms384m -Xmx384m -XX:PermSize=384m -XX:MaxPermSize=384m -Dteamcity_logs=/var/log/teamcity" <%= node['teamcity']['install_path'] %>/bin/teamcity-server.sh run

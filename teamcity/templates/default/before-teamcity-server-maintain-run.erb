@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export JAVA_HOME=<%= node[:java][:java_home] %>
+export TEAMCITY_APP_DIR=<%= node[:teamcity][:install_path] %>/webapps/ROOT
+  
+<%= node[:teamcity][:install_path] %>/bin/maintainDB.sh backup -A <%= node[:teamcity][:home_path] %>
+exit 0

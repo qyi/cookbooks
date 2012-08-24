@@ -1,0 +1,4 @@
+#!/bin/bash
+exec 2>&1
+exec runit-man -m readwrite -b 0.0.0.0 -p <%= node[:runit][:runit_man][:port] %> -a "/etc/service" -f "/etc/sv" -l "svlogd" -u <%= node[:runit][:runit_man][:user] %>:<%= node[:runit][:runit_man][:password] %>
+

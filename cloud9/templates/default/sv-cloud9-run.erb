@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+cd <%= node['cloud9']['install'] %>
+exec chpst -u <%= node['cloud9']['user'] %> bin/cloud9.sh -w <%= @options[:target] %> -l <%= node['cloud9']['ipaddress'] ? node['cloud9']['ipaddress'] : node['ipaddress'] %>

@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+
+export CLASSPATH=$(hadoop classpath)
+export LD_LIBRARY_PATH=<%= node[:java][:java_home] %>/jre/lib/<%= node[:hadoop][:arch] %>/server/:/usr/lib/hadoop/c++/Linux-<%= node[:hadoop][:arch] %>-<%= node[:hadoop][:arch] =~ /i386/ ? "32" : "64" %>/lib:/usr/local/lib
+
+exec chpst -u hdfs /usr/local/bin/scribed -c /etc/scribe/scribe.conf

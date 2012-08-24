@@ -1,0 +1,4 @@
+cookbooks
+==================
+
+Opscode Chef cookbooks

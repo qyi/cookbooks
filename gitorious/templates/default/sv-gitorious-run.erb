@@ -1,0 +1,12 @@
+#!/bin/bash
+exec 2>&1
+
+rvm_path=<%= node[:gitorious][:app_base_dir] %>/.rvm/
+export RAILS_ENV=production
+export HOME=<%= node[:gitorious][:app_base_dir] %>
+export USER=<%= node[:gitorious][:app_user] %>
+
+source $rvm_path/scripts/rvm
+rvm use <%= node[:gitorious][:rvm_ruby_string] %>
+
+exec chpst -u <%= node[:gitorious][:app_user] %> passenger start <%= node[:gitorious][:app_base_dir] %> -a 127.0.0.1 -p <%= node[:gitorious][:port] %> -e <%= node[:gitorious][:rails_env] %>
